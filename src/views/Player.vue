@@ -2,7 +2,6 @@
   <div class="player">
     <div class="video-menu">비디오 서브 메뉴</div>
     <div class="video-body">비디오 내용</div>
-    <div>비디오 내용 테스트 추가 추후 삭제 예정</div>
   </div>
 </template>
 
