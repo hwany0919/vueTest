@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div>
-      Footer
+      Footer || 데이터 입력
     </div>
   </div>
 </template>
