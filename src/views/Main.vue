@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <div>데이터 확인?</div>
     <Header class="header" />
     <router-view class="main-wrapper" />
     <Footer class="footer" />
