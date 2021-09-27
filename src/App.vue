@@ -12,7 +12,7 @@ export default {
 
 <style lang="less">
 body {
-    background-color: #121212;
+    background-color: #0f0f0f;
     margin: 0;
 }
 
