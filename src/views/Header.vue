@@ -2,7 +2,7 @@
   <div class="header">
     <img class="header-img" alt="Vue logo" src="@/assets/logo.png" @click="move(1)">
     <router-link v-for="(menu, idx) in headerMenus" :key="`${menu.name}_${idx}`"
-      class="header-menu"
+      :class="['header-menu', {'home': menu.path == '/'}]"
       :to="menu.path"
       tag="div">
       {{menu.name}}
@@ -44,10 +44,11 @@ export default {
       color: #0000ff;
       font-weight: bold;
       cursor: pointer;
-
-      &.router-link-exact-active {
-        color: #2affcc;
-      }
+      
+      &.home.router-link-active { color: #0000ff; }
+      &.home.router-link-exact-active { color: #2affcc; }
+      &.router-link-exact-active, &.router-link-active { color: #2affcc; }
     }
+
   }
 </style>

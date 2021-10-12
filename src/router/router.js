@@ -24,7 +24,19 @@ export default new Router({
         {
           path: "/test",
           name: "TEST",
-          component: () => import("@/views/CodeTest")
+          component: () => import("@/views/CodeTest"),
+          children: [
+            {
+              path: "/test",
+              name: "NEW ID",
+              component: () => import("@/views/NewIdRecommend")
+            },
+            {
+              path: "/test/keypad",
+              name: "KEYPAD",
+              component: () => import("@/views/InputKeypad")
+            }
+          ]
         }
       ]
     }
