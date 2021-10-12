@@ -41,7 +41,8 @@ export default {
     .main-wrapper {
       display: flex;
       flex-flow: column wrap;
-      min-height: calc(100vh - 172px);
+      min-height: calc(100vh - 192px);
+      padding-top: 20px;
     }
   }
 </style>

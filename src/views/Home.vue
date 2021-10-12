@@ -11,7 +11,7 @@
     </div>
     <div class="line">
       <span>CheckBox Test</span>
-      <br/>
+      <br>
       <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
       <label for="jack">Jack</label>
       <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
@@ -20,6 +20,9 @@
       <label for="toms">Toms</label>
       <br>
       <span>{{ checkNames }}</span>
+      <br><br>
+      <input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
+      value check :: {{ toggle }}
     </div>
   </div>
 </template>
@@ -35,7 +38,8 @@ export default {
     return {
       message: "Vue 테스트 중입니다.",
       showLi: false,
-      checkedNames: []
+      checkedNames: [],
+      toggle: "no"
     }
   },
   methods: {
