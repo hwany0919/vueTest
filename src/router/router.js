@@ -9,32 +9,32 @@ export default new Router({
     {
       path: "/",
       name: "MAIN",
-      component: () => import("@/views/Main"),
+      component: () => import("@/views/MainView"),
       children: [
         {
           path: "/",
           name: "HOME",
-          component: () => import("@/views/Home")
+          component: () => import("@/views/HomeView")
         },
         {
           path: "/player",
           name: "PLAYER",
-          component: () => import("@/views/Player")
+          component: () => import("@/views/PlayerView")
         },
         {
           path: "/test",
           name: "TEST",
-          component: () => import("@/views/CodeTest"),
+          component: () => import("@/views/CodeTestView"),
           children: [
             {
               path: "/test",
               name: "NEW ID",
-              component: () => import("@/views/NewIdRecommend")
+              component: () => import("@/views/codes/NewIdRecommendView")
             },
             {
               path: "/test/keypad",
               name: "KEYPAD",
-              component: () => import("@/views/InputKeypad")
+              component: () => import("@/views/codes/InputKeypadView")
             }
           ]
         }

@@ -8,6 +8,7 @@
       <span class="word_bold">4-1.</span> 만약 두 엄지손가락의 거리가 같다면, 오른손잡이는 오른손 엄지손가락, 왼손잡이는 왼손 엄지손가락을 사용합니다.
     </div>
     <div class="answer" v-for="(number, idx) in numbers" :key="idx">
+      {{ `idx :: [${number} / ${hand[idx]}] =====> ` }}
       {{ getData(number, hand[idx]) }}
     </div>
   </div>
@@ -22,21 +23,24 @@ export default {
         [7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2],
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
       ],
-      hand: [
-        "right", "left", "right"
-      ]
+      hand: ["right", "left", "right"]
     }
+  },
+  created() {
+    const numbers = [1,2,3,4,6,7,8,0];
+    let answer = numbers.reduce((acc, cur) => {
+      console.log("acc :: ", acc,  " /// cur :: ", cur);
+      acc += cur;
+      return acc;
+    });
+    console.log("answer :: ", 45 - answer);
   },
   methods: {
     getData(numbers, hand) {
+      // const arrLeft = [1, 4, 7], arrRight= [3, 6, 9], arrMid = [2, 5, 8, 0];
+      
       return `Numbers : ${numbers}, hand : ${hand}`;
     }
   }
 }
 </script>
-
-<style lang="less">
-  #inputKeyPad {
-
-  }
-</style>

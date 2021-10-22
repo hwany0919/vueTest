@@ -10,7 +10,7 @@
       <span class="word_bold">6-1.</span> 만약 제거 후 마침표(.)가 new_id의 끝에 위치한다면 끝에 위치한 마침표(.) 문자를 제거합니다.<br>
       <span class="word_bold">7.</span> new_id의 길이가 2자 이하라면, new_id의 마지막 문자를 new_id의 길이가 3이 될 때까지 반복해서 끝에 붙입니다.
     </div>
-    <div class="answer" v-for="(str, idx) in new_id" :key="idx">{{ `${idx} :: ` }} {{ getStr(str) }}</div>
+    <div class="answer" v-for="(str, idx) in new_id" :key="idx">{{ `${idx} :: ${str} =====> ` }} {{ getStr(str) }}</div>
   </div>
 </template>
 
@@ -39,9 +39,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less">
-  #newId {
-
-  }
-</style>
