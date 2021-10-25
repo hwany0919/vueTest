@@ -1,8 +1,8 @@
 <template>
-  <div class="multiVideo" v-show="videoFlag">
-    <div class="video-title">Video Play</div>
+  <div :class="['multiVideo', {multi:multiFlag}]" v-show="videoFlag">
+    <div class="video-title">Video Play :: {{videoId}}</div>
     <video 
-      :id="this.videoId"
+      :id="videoId"
       class="video-js vjs-default-skin"
       controls
       preload="auto"
@@ -16,7 +16,8 @@
 <script>
 export default {
   props: {
-    videoId: {type: String, required: true}
+    videoId: {type: String, required: true},
+    multiFlag: {type: Boolean, default: false}
   },
   data() {
     return {
@@ -85,6 +86,12 @@ export default {
     .video-title {
       margin-bottom: 10px;
       font-size: 14px;
+    }
+
+    &.multi {
+      width: 46%;
+      margin: 5px;
+      padding: 0;
     }
   }
 </style>

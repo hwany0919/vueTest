@@ -5,6 +5,7 @@
       <multi-video v-for="(data, idx) in videoData" :key="idx"
         ref="videoData"
         :videoId="data.id"
+        :multiFlag="multiFlag"
       />
     </div>
   </div>
@@ -21,12 +22,16 @@ export default {
     return {
       videoData: [
         {id: "video1", refId: "refVideo1"},
-        {id: "video2", refId: "refVideo2"}
+        {id: "video2", refId: "refVideo2"},
+        {id: "video3", refId: "refVideo3"},
+        {id: "video4", refId: "refVideo4"}
       ],
-      videoRefs: []
+      videoRefs: [],
+      multiFlag: false
     }
   },
   created() {
+    this.multiFlag = true;
     this.setVideo();
   },
   methods: {
@@ -35,15 +40,21 @@ export default {
       videoScript.setAttribute("src", `//vjs.zencdn.net/7.15.4/video.min.js`);
       videoScript.addEventListener("load", () => this.playVideo(), false);
       document.body.appendChild(videoScript);
-      console.log("setvideo!!!");
     },
     playVideo() {
-      console.log("playVideo!!!", this.$refs.videoData[0].videoFlag);
-      this.$refs.videoData[0].videoFlag = true;
-      this.$refs.videoData[0].videoInit();
-      this.$refs.videoData[0].player.play();
-      this.$refs.videoData[1].videoFlag = true;
-      this.$refs.videoData[1].videoInit();
+      console.log("this.videoData :: ", this.videoData);
+      for (var i=0; i<this.videoData.length; i++) {
+        console.log("playVideo :: ", i);
+        this.$refs.videoData[i].videoFlag = true;
+        this.$refs.videoData[i].videoInit();
+        // this.$refs.videoData[0].player.play();
+      }
+      // this.$refs.videoData[0].videoFlag = true;
+      // this.$refs.videoData[0].videoInit();
+      // this.$refs.videoData[0].player.play();
+
+      // this.$refs.videoData[1].videoFlag = true;
+      // this.$refs.videoData[1].videoInit();
     }
   }
 }
@@ -64,6 +75,7 @@ export default {
 
     .video-body {
       display: flex;
+      flex-flow: row wrap;
       justify-content: center;
       align-items: center;
       width: 100%;
