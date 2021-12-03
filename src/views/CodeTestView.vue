@@ -1,7 +1,10 @@
 <template>
   <div id="codeTest">
     <div class="codeTabs">
-      <router-link class="codeMenu" v-for="(menu, idx) in codeMenus" :key="idx" :to="menu.path" tag="div">{{ menu.name }}</router-link>
+      <router-link v-for="(menu, idx) in codeMenus" :key="`codeMenu_${idx}`" :to="menu.path" custom v-slot="{ navigate, isActive, isExactActive }">
+        <div :class="['codeMenu', isActive && 'router-link-active', isExactActive && 'router-link-exact-active']"
+        @click="navigate">{{ menu.name }}</div>
+      </router-link>
     </div>
     <div class="codeBody">
       <router-view />

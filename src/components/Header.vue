@@ -1,11 +1,9 @@
 <template>
   <div class="header">
     <img class="header-img" alt="Vue logo" src="@/assets/logo.png" @click="move(1)">
-    <router-link v-for="(menu, idx) in headerMenus" :key="`${menu.name}_${idx}`"
-      :class="['header-menu', {'home': menu.path == '/'}]"
-      :to="menu.path"
-      tag="div">
-      {{menu.name}}
+    <router-link v-for="(menu, idx) in headerMenus" :key="`${menu.name}_${idx}`" :to="menu.path" custom v-slot="{ navigate, isActive, isExactActive }">
+      <div :class="['header-menu', {'home': menu.path == '/'}, isActive && 'router-link-active', isExactActive && 'router-link-exact-active']"
+      @click="navigate" role="link">{{ menu.name }}</div>
     </router-link>
   </div>
 </template>
