@@ -9,7 +9,7 @@
     </div>
     <div class="answer" v-for="(number, idx) in numbers" :key="idx">
       {{ `idx :: [${number} / ${hand[idx]}] =====> ` }}
-      {{ getData(number, hand[idx]) }}
+      {{ getData(number, hand[idx], resultData[idx]) }}
     </div>
   </div>
 </template>
@@ -23,7 +23,8 @@ export default {
         [7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2],
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
       ],
-      hand: ["right", "left", "right"]
+      hand: ["right", "left", "right"],
+      resultData: ["LRLLLRLLRRL", "LRLLRRLLLRR", "LLRLLRLLRL"]
     }
   },
   created() {
@@ -36,10 +37,36 @@ export default {
     console.log("answer :: ", 45 - answer);
   },
   methods: {
-    getData(numbers, hand) {
+    getData(numbers, hand, resultData) {
       // const arrLeft = [1, 4, 7], arrRight= [3, 6, 9], arrMid = [2, 5, 8, 0];
+      const left = [1, 4, 7], right = [3, 6, 9], mid = [2, 5, 8, 0],
+      handed = (hand === "right") ? "R" : "L";
+      let leftFinger, rightFinger;
+      let arrData = numbers.reduce((arr, cur) => {
+          if (left.indexOf(cur) > -1) {
+              arr.push("L");
+              leftFinger = left.indexOf(cur);
+          } else if (right.indexOf(cur) > -1) {
+              arr.push("R");
+              rightFinger = right.indexOf(cur);
+          } else {
+              let indexMid = mid.indexOf(cur),
+                  lCnt = Math.abs(indexMid - leftFinger),
+                  rCnt = Math.abs(indexMid - rightFinger);
+              console.log(cur, indexMid, "lCnt :: ", lCnt, " // rCnt :: ", rCnt);
+              if (lCnt < rCnt) {
+                  arr.push("L");
+              } else if (lCnt > rCnt) {
+                  arr.push("R");
+              } else {
+                  arr.push(handed);
+              }
+          }
+          return arr;
+      }, []);
       
-      return `Numbers : ${numbers}, hand : ${hand}`;
+      // return `Numbers : ${numbers}, hand : ${hand}, result: ${resultData}`;
+      return `Answer :: ${arrData}, result: ${resultData}`;
     }
   }
 }

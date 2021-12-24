@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <ul class="test-ui">
+    <!-- <ul class="test-ui">
       <li>Vue Test</li>
       <li>{{message}}</li>
-      <li @click.stop.prevent="liClick">Click!!</li>
+      <li @click.stop.prevent="showLi = !showLi">Click!!</li>
       <li v-if="showLi">선택을 하면 보입니다.</li>
     </ul>
     <div class="second-line">
@@ -23,6 +23,9 @@
       <br><br>
       <input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
       value check :: {{ toggle }}
+    </div> -->
+    <div class="btnDiv">
+      <button @click="movePage">페이지 이동!!</button>
     </div>
   </div>
 </template>
@@ -43,8 +46,8 @@ export default {
     }
   },
   methods: {
-    liClick() {
-      this.showLi = !this.showLi
+    movePage() {
+      window.open("https://www.spotvnow.co.kr", "_blank");
     }
   }
 }
@@ -79,6 +82,21 @@ export default {
 
       span {
         margin-left: 5px;
+      }
+    }
+
+    .btnDiv {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: calc(100vh - 232px);
+
+      > button {
+        font-size: 24px;
+        font-weight: bold;
+        background-color: skyblue;
+        cursor: pointer;
       }
     }
   }

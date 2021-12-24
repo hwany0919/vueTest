@@ -1,6 +1,10 @@
 <template>
   <div class="player">
-    <!-- <div class="video-menu">비디오 서브 메뉴</div> -->
+    <div class="video-menu">
+      비디오 서브 메뉴
+      <button @click="singlePlay()">싱글플레이어</button>
+      <button @click="multiPlay()">멀티플레이어</button>
+    </div>
     <div class="video-body">
       <multi-video v-for="(data, idx) in videoData" :key="idx"
         ref="videoData"
@@ -21,17 +25,16 @@ export default {
   data() {
     return {
       videoData: [
-        {id: "video1", refId: "refVideo1"},
-        {id: "video2", refId: "refVideo2"},
-        {id: "video3", refId: "refVideo3"},
-        {id: "video4", refId: "refVideo4"}
+        {id: "video1"},
+        {id: "video2"},
+        {id: "video3"},
+        {id: "video4"}
       ],
       videoRefs: [],
       multiFlag: false
     }
   },
   created() {
-    this.multiFlag = true;
     this.setVideo();
   },
   methods: {
@@ -42,19 +45,23 @@ export default {
       document.body.appendChild(videoScript);
     },
     playVideo() {
-      console.log("this.videoData :: ", this.videoData);
-      for (var i=0; i<this.videoData.length; i++) {
-        console.log("playVideo :: ", i);
+      this.$refs.videoData[0].videoFlag = true;
+      this.$refs.videoData[0].videoInit();
+      window._player = this.$refs.videoData[0].player;
+    },
+    singlePlay() {
+      for (var i=1; i<this.videoData.length; i++) {
+        this.$refs.videoData[i].videoFlag = false;
+        if (this.$refs.videoData[i].player) this.$refs.videoData[i].player.pause();
+      }
+      this.multiFlag = false;
+    },
+    multiPlay() {
+      for (var i=1; i<this.videoData.length; i++) {
         this.$refs.videoData[i].videoFlag = true;
         this.$refs.videoData[i].videoInit();
-        // this.$refs.videoData[0].player.play();
       }
-      // this.$refs.videoData[0].videoFlag = true;
-      // this.$refs.videoData[0].videoInit();
-      // this.$refs.videoData[0].player.play();
-
-      // this.$refs.videoData[1].videoFlag = true;
-      // this.$refs.videoData[1].videoInit();
+      this.multiFlag = true;
     }
   }
 }
@@ -65,7 +72,6 @@ export default {
     display: flex;
     flex-flow: column wrap;
     text-align: left;
-    padding: 0 30px;
     
     .video-menu {
       width: 100%;

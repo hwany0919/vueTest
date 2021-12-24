@@ -1,5 +1,5 @@
 <template>
-  <div :class="['multiVideo', {multi:multiFlag}]" v-show="videoFlag">
+  <div :class="['multiVideo', {multi: multiFlag}]" v-show="videoFlag">
     <div class="video-title">Video Play :: {{videoId}}</div>
     <video 
       :id="videoId"
@@ -27,15 +27,18 @@ export default {
   },
   methods: {
     videoInit() {
-      const videoSrc = "https://manifest.prod.boltdns.net/manifest/v1/hls/v4/clear/5764318566001/e00ea3b1-1ed0-4d34-beb5-098e587665d8/10s/master.m3u8?fastly_token=NjE3NjlmNWVfMjMxMTRiYTQ1M2QwZTlkMGQzNzM5MGQ1MmI4NjAwMTJlZTM4ZjgwYTBhOWIzNGZjMmRlMDRmMDExOTc4NTkyZQ%3D%3D";
-      this.player = videojs(this.videoId, {
-        sources: [
-          { src: videoSrc }
-        ],
-        textTrackSettings: false
-      });
-      this.setBigButton(this.player);
-      this.setVideoEvent(this.player);
+      if (!this.player?.id_) {
+        const videoSrc = "https://spotvgnh-livecdn.spotvnow.co.kr/spotvgnh/spotvgnh.smil/playlist.m3u8";
+        this.player = videojs(this.videoId, {
+          sources: [
+            { src: videoSrc }
+          ],
+          textTrackSettings: false
+        });
+
+        this.setBigButton(this.player);
+        this.setVideoEvent(this.player);
+      }
     },
     setBigButton(player) {
       let bigPlayButton = document.createElement("div");
@@ -57,7 +60,7 @@ export default {
     },
     setVideoEvent(player) {
       player.on("play", (e) => {
-        console.log(player.id_, " /// play!!!");
+        player.volume(.3);
       });
 
       player.on("pause", (e) => {
@@ -66,7 +69,7 @@ export default {
     }
   },
   destroyed() {
-    this.player.dispose();
+    if (this.player) this.player.dispose();
   }
 }
 </script>
