@@ -8,18 +8,17 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "MAIN",
-      component: () => import("@/views/MainView"),
+      component: () => import(/* webpackChunkName: "MAIN" */"@/views/MainView"),
       children: [
         {
           path: "/",
           name: "HOME",
-          component: () => import("@/views/HomeView")
+          component: () => import(/* webpackChunkName: "HOME" */"@/views/HomeView")
         },
         {
           path: "/player",
           name: "PLAYER",
-          component: () => import("@/views/PlayerView")
+          component: () => import(/* webpackChunkName: "PLAYER" */"@/views/PlayerView")
         },
         {
           path: "/test",
