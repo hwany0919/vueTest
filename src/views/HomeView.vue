@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     movePage() {
-      window.open("https://www.spotvnow.co.kr", "_blank");
+      window.open("https://dev.spotvnow.co.kr", "_blank");
     }
   }
 }

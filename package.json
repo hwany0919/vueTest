@@ -1,11 +1,16 @@
 {
-  "name": "vue-proj",
+  "name": "vue-project-test",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
+    "serve": "vue-cli-service serve --mode develop --open",
+    "serve-local": "vue-cli-service serve --mode local --open",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build-local": "vue-cli-service build --mode local",
+    "build-dev": "vue-cli-service build --mode develop",
+    "build-prod": "vue-cli-service build --mode prod",
+    "lint": "vue-cli-service lint",
+    "report": "vue-cli-service --report --mode develop"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -13,7 +18,8 @@
     "video.js": "^7.10.2",
     "vue": "^2.6.11",
     "vue-lodash": "^2.1.2",
-    "vue-router": "^3.4.9"
+    "vue-router": "^3.4.9",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -24,6 +30,9 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^4.1.0",
     "less-loader": "^7.2.1",
+    "node-sass": "^7.0.1",
+    "sass": "^1.45.1",
+    "sass-loader": "^10.2.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

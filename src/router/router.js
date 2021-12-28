@@ -8,32 +8,32 @@ export default new Router({
   routes: [
     {
       path: "/",
-      component: () => import(/* webpackChunkName: "MAIN" */"@/views/MainView"),
+      component: () => import(/* webpackChunkName: "main" */"@/views/MainView"),
       children: [
         {
           path: "/",
           name: "HOME",
-          component: () => import(/* webpackChunkName: "HOME" */"@/views/HomeView")
+          component: () => import(/* webpackChunkName: "home" */"@/views/HomeView")
         },
         {
           path: "/player",
           name: "PLAYER",
-          component: () => import(/* webpackChunkName: "PLAYER" */"@/views/PlayerView")
+          component: () => import(/* webpackChunkName: "player" */"@/views/PlayerView")
         },
         {
           path: "/test",
           name: "TEST",
-          component: () => import("@/views/CodeTestView"),
+          component: () => import(/* webpackChunkName: "sourceTest" */"@/views/CodeTestView"),
           children: [
             {
               path: "/test",
               name: "NEW ID",
-              component: () => import("@/views/codes/NewIdRecommendView")
+              component: () => import(/* webpackChunkName: "test1" */"@/views/codes/NewIdRecommendView")
             },
             {
               path: "/test/keypad",
               name: "KEYPAD",
-              component: () => import("@/views/codes/InputKeypadView")
+              component: () => import(/* webpackChunkName: "test2" */"@/views/codes/InputKeypadView")
             }
           ]
         }
