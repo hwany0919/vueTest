@@ -7,7 +7,7 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: "/",
+      path: "",
       component: () => import(/* webpackChunkName: "main" */"@/views/MainView"),
       children: [
         {
@@ -38,6 +38,11 @@ export default new Router({
           ]
         }
       ]
+    },
+    {
+      path: "/oauth",
+      component: () => import(/* webpackChunkName: "oauth" */"@/views/account/Oauth"),
+      meta: { public: true }
     }
   ]
 })
