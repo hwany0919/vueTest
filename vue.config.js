@@ -11,12 +11,22 @@ console.log("base_url :: ", process.env.BASE_URL, " /// version :: ", version);
 
 module.exports = {
   lintOnSave: false,
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:9090"
+      }
+    }
+  },
   configureWebpack: config => {
+    // console.log("config :: ", config);
     if (isEnv) {
       console.log("vue config js build-prd production!!!");
     } else {
-      console.log("vue config js build-dev development!!!");
+      console.log("vue config js build-dev development!!!", config.output.publicPath);
+      config.output.publicPath = "/";
     }
+
     // optimization: {
     //   splitChunks: {
     //     chunks: 'async',
